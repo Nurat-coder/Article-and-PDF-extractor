@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Article and PDF Extractor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Article and PDF Extractor</h1>
+    <p class="intro">Pull clean text from a news article or a PDF.</p>
+
+    <div class="tabs" role="tablist" aria-label="Extraction options">
+      <button role="tab" id="tab-url" aria-selected="true" aria-controls="panel-url">Article link</button>
+      <button role="tab" id="tab-pdf" aria-selected="false" aria-controls="panel-pdf" tabindex="-1">PDF file</button>
+      <button role="tab" id="tab-history" aria-selected="false" aria-controls="panel-history" tabindex="-1">History</button>
+    </div>
+
+    <section id="panel-url" role="tabpanel" aria-labelledby="tab-url">
+      <label for="url-input">Article link</label>
+      <input id="url-input" type="url" maxlength="2048" placeholder="https://punchng.com/your-article" autocomplete="off">
+      <button id="url-go" class="primary">Extract text</button>
+    </section>
+
+    <section id="panel-pdf" role="tabpanel" aria-labelledby="tab-pdf" hidden>
+      <label for="pdf-input">PDF file (up to 10 MB)</label>
+      <input id="pdf-input" type="file" accept="application/pdf,.pdf">
+      <button id="pdf-go" class="primary">Extract text</button>
+    </section>
+
+    <section id="panel-history" role="tabpanel" aria-labelledby="tab-history" hidden>
+      <p class="note">Stored only in this browser. Only the source name is saved, not the text.</p>
+      <ol id="history-list"></ol>
+      <p id="history-empty">Nothing here yet. Extract an article or PDF first.</p>
+      <button id="history-clear">Clear history</button>
+    </section>
+
+    <p id="status" role="status" aria-live="polite"></p>
+
+    <section id="result" hidden>
+      <div class="result-bar">
+        <h2>Extracted text</h2>
+        <div>
+          <button id="copy">Copy</button>
+          <button id="download">Download .txt</button>
+        </div>
+      </div>
+      <pre id="output" tabindex="0"></pre>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
